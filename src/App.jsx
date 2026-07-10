@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import MapView from './components/MapView.jsx';
 import VerdictBanner from './components/VerdictBanner.jsx';
 import StatusBanners from './components/StatusBanners.jsx';
+import ResourcesMenu from './components/ResourcesMenu.jsx';
 import { resolveVerdict } from './lib/rules.js';
 import { loadStreets, nearestSegment } from './lib/streets.js';
 import { fetchSnowStatus, fetchWeatherAdvisory, inSnowSeason } from './lib/snow.js';
@@ -107,14 +108,15 @@ export default function App() {
       {/* Top: title, status banners, search */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-[600] flex flex-col gap-2 p-3">
         <div className="pointer-events-auto mx-auto w-full max-w-md rounded-xl bg-slate-900/85 p-2 text-white shadow-lg backdrop-blur">
-          <div className="flex items-center justify-between px-1 pb-1">
-            <h1 className="text-sm font-bold">🅿️ Milwaukee Night Park</h1>
+          <div className="flex items-center gap-2 px-1 pb-1">
+            <h1 className="min-w-0 flex-1 truncate text-sm font-bold">🅿️ Milwaukee Night Park</h1>
             <button
               onClick={useMyLocation}
               className="rounded-lg bg-blue-600 px-2.5 py-1 text-xs font-semibold active:bg-blue-700"
             >
               Use my location
             </button>
+            <ResourcesMenu />
           </div>
           <form onSubmit={search} className="flex gap-1.5">
             <input
