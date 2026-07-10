@@ -66,7 +66,7 @@ export default function ResourcesMenu({ className = '' }) {
       {open && (
         <div
           role="menu"
-          className="absolute right-0 top-9 z-[700] max-h-[70vh] w-72 overflow-y-auto rounded-lg border border-white/10 bg-[#111318] py-1"
+          className="absolute right-0 top-11 z-[700] max-h-[70dvh] w-72 overflow-y-auto rounded-lg border border-white/10 bg-[#111318] py-1"
         >
           <p className="px-3 pb-1 pt-2 text-[11px] font-semibold uppercase tracking-wide text-white/40">
             City of Milwaukee
@@ -79,7 +79,7 @@ export default function ResourcesMenu({ className = '' }) {
               rel="noreferrer noopener"
               role="menuitem"
               onClick={() => setOpen(false)}
-              className="block px-3 py-2.5 text-white transition-colors hover:bg-white/5"
+              className="block px-3 py-2 text-white transition-colors hover:bg-white/5"
             >
               <span className="block text-sm font-medium leading-snug">{l.label}</span>
               {l.sub && <span className="mt-0.5 block text-xs text-white/50">{l.sub}</span>}

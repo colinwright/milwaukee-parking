@@ -106,8 +106,9 @@ export default function App() {
         onCenterChange={setCenter}
       />
 
-      {/* Top: title, status banners, search */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-[600] flex flex-col gap-2 p-3">
+      {/* Top: title, status banners, search. Sits above the bottom panel so the
+          Resources dropdown is never clipped by the verdict card. */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-[700] flex flex-col gap-2 p-3">
         <div className="pointer-events-auto mx-auto w-full max-w-md rounded-xl border border-white/10 bg-[#111318] p-2.5 text-white">
           <h1 className="px-0.5 text-base font-semibold tracking-tight">Milwaukee Parking</h1>
           <div className="mt-2 flex gap-1.5">

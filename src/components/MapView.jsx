@@ -25,6 +25,10 @@ export default function MapView({ data, target, selectedLabel, onCenterChange })
     });
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
+      // keepBuffer holds extra tiles around the viewport so panning doesn't
+      // reveal blank edges; updateWhenIdle:false loads tiles during the pan.
+      keepBuffer: 4,
+      updateWhenIdle: false,
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
     mapRef.current = map;
@@ -40,9 +44,21 @@ export default function MapView({ data, target, selectedLabel, onCenterChange })
     map.on('moveend', onMove);
     emit(); // initial verdict
 
+    // On mobile the container often gets its real size AFTER Leaflet inits,
+    // which leaves blank tiles and a wrongly-centered map. Recompute size once
+    // layout settles and whenever the container resizes (e.g. rotation).
+    // invalidateSize recomputes the pixel origin while keeping the logical
+    // center (downtown), so it both fills in missing tiles and fixes the
+    // off-center render — no setView needed.
+    const settleTimer = setTimeout(() => map.invalidateSize({ animate: false }), 150);
+    const ro = new ResizeObserver(() => map.invalidateSize({ animate: false }));
+    ro.observe(containerRef.current);
+
     return () => {
       map.off('moveend', onMove);
       clearTimeout(moveTimer.current);
+      clearTimeout(settleTimer);
+      ro.disconnect();
       map.remove();
       mapRef.current = null;
     };
