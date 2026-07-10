@@ -36,7 +36,12 @@ export default function StatusBanners({ snow, weather, inSeason }) {
   return (
     <div className="space-y-px">
       {banners.map((b) => (
-        <div key={b.key} style={b.style} className="px-4 py-2 text-center text-xs font-medium">
+        <div
+          key={b.key}
+          role={b.key === 'emergency' ? 'alert' : 'status'}
+          style={b.style}
+          className="px-4 py-2 text-center text-xs font-medium"
+        >
           {b.text}
         </div>
       ))}

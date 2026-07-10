@@ -122,10 +122,14 @@ export default function MapView({ data, target, selectedLabel, onCenterChange })
   }, [selectedLabel, data]);
 
   return (
-    <div className="absolute inset-0">
+    <div
+      className="absolute inset-0"
+      role="region"
+      aria-label="Map of Milwaukee. Drag the map to point the crosshair at a street."
+    >
       <div ref={containerRef} className="h-full w-full" />
       {/* Center crosshair — the verdict is for this exact point */}
-      <svg className="crosshair" viewBox="0 0 24 24" fill="none">
+      <svg aria-hidden="true" className="crosshair" viewBox="0 0 24 24" fill="none">
         <path d="M12 2 L12 22 M2 12 L22 12" stroke="white" strokeWidth="4" strokeLinecap="round" />
         <path d="M12 2 L12 22 M2 12 L22 12" stroke="#111827" strokeWidth="2" strokeLinecap="round" />
         <circle cx="12" cy="12" r="3" fill="#111827" stroke="white" strokeWidth="1.5" />

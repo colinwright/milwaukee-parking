@@ -181,7 +181,7 @@ export function resolveVerdict({ nnp = false, ex = false, snowEmergency = false,
         side: null,
         color: 'no',
         headline: 'NO PARKING — vehicle will be towed',
-        hours: '10 PM – 6 AM (snow emergency)',
+        hours: '10 PM–6 AM (snow emergency)',
       });
     }
     if (ex) {
@@ -190,7 +190,7 @@ export function resolveVerdict({ nnp = false, ex = false, snowEmergency = false,
         side: null,
         color: 'either',
         headline: 'Park on EITHER side',
-        hours: '10 PM – 6 AM (snow emergency)',
+        hours: '10 PM–6 AM (snow emergency)',
       });
     }
     return finalize({
@@ -198,7 +198,7 @@ export function resolveVerdict({ nnp = false, ex = false, snowEmergency = false,
       side,
       color: side === 'ODD' ? 'odd' : 'even',
       headline: `Park on the ${side} side tonight`,
-      hours: '10 PM – 6 AM (snow emergency)',
+      hours: '10 PM–6 AM (snow emergency)',
     });
   }
 
@@ -209,7 +209,7 @@ export function resolveVerdict({ nnp = false, ex = false, snowEmergency = false,
       side: null,
       color: 'no',
       headline: 'NO PARKING on this street overnight',
-      hours: '2 – 6 AM (Dec 1 – Mar 1: through-highway / bus route)',
+      hours: '2–6 AM (Dec 1–Mar 1: through-highway or bus route)',
     });
   }
 
@@ -220,7 +220,7 @@ export function resolveVerdict({ nnp = false, ex = false, snowEmergency = false,
       side: null,
       color: 'either',
       headline: 'Park on EITHER side',
-      hours: '2 – 6 AM',
+      hours: '2–6 AM',
     });
   }
 
@@ -230,7 +230,7 @@ export function resolveVerdict({ nnp = false, ex = false, snowEmergency = false,
     side,
     color: side === 'ODD' ? 'odd' : 'even',
     headline: `Park on the ${side} side tonight`,
-    hours: '2 – 6 AM',
+    hours: '2–6 AM',
   };
   if (nnp) notes.push('This is a through-highway or bus route; posted signs likely restrict parking.');
   return finalize(v);

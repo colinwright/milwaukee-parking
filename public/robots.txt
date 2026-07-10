@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://colinwright.github.io/milwaukee-parking/sitemap.xml

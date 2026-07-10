@@ -15,6 +15,13 @@ body {
   overscroll-behavior: none;
 }
 
+/* Visible keyboard focus everywhere (WCAG 2.4.7). Mouse/touch users don't see
+   it because :focus-visible only matches keyboard-driven focus. */
+:focus-visible {
+  outline: 2px solid #8ab4f8;
+  outline-offset: 2px;
+}
+
 /* Leaflet controls sit under our UI panels */
 .leaflet-container {
   background: #aadaff;

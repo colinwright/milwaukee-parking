@@ -2,15 +2,100 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <!-- Zoom must stay enabled (WCAG 1.4.4) — no maximum-scale / user-scalable=no -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#111318" />
-    <meta name="description" content="A clear yes/no/odd/even answer for where you can park overnight on Milwaukee city streets tonight." />
+
+    <title>Milwaukee Parking — Which side of the street can you park on tonight?</title>
+    <meta
+      name="description"
+      content="Check where you can park overnight on Milwaukee city streets tonight: odd or even side, exception streets, through-highways, and snow emergencies. Free and mobile-friendly."
+    />
+    <meta name="author" content="Colin Wright" />
+    <link rel="canonical" href="https://colinwright.github.io/milwaukee-parking/" />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Milwaukee Parking" />
+    <meta property="og:title" content="Milwaukee Parking — Which side of the street can you park on tonight?" />
+    <meta
+      property="og:description"
+      content="A clear yes/no/odd/even answer for overnight street parking in Milwaukee, including exception streets and snow emergencies."
+    />
+    <meta property="og:url" content="https://colinwright.github.io/milwaukee-parking/" />
+    <meta property="og:image" content="https://colinwright.github.io/milwaukee-parking/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Milwaukee Parking — which side of the street can you park on tonight?" />
+    <meta name="twitter:card" content="summary_large_image" />
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23111318'/><text x='16' y='22' font-family='system-ui,sans-serif' font-size='20' font-weight='700' fill='white' text-anchor='middle'>P</text></svg>" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <link rel="manifest" href="manifest.webmanifest" />
-    <title>Milwaukee Parking</title>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Milwaukee Parking",
+        "url": "https://colinwright.github.io/milwaukee-parking/",
+        "description": "Shows which side of a Milwaukee street you can legally park on overnight tonight — odd or even side, exception streets, through-highway and bus-route restrictions, and snow emergencies.",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "softwareVersion": "1.0.0",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "author": { "@type": "Person", "name": "Colin Wright", "url": "https://colin.io" },
+        "areaServed": {
+          "@type": "City",
+          "name": "Milwaukee",
+          "address": { "@type": "PostalAddress", "addressRegion": "WI", "addressCountry": "US" }
+        }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Which side of the street can I park on overnight in Milwaukee?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Match the calendar date before midnight: on odd-numbered dates, park on the side with odd house numbers; on even dates, the even side. The side you choose in the evening stays legal through the 2–6 AM enforcement window. Some streets are exceptions where either side is allowed."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need a permit to park overnight on Milwaukee streets?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Parking on city streets between 2 and 6 AM requires a City of Milwaukee night parking permit or free temporary night parking permission, except on Sunday mornings and certain holidays."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What changes during a Milwaukee snow emergency?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Alternate-side parking runs from 10 PM to 6 AM citywide, and parking is prohibited on through-highways and bus routes — vehicles parked there can be towed."
+            }
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <p style="margin: 2rem; font-family: system-ui, sans-serif">
+        Milwaukee Parking shows which side of a Milwaukee street you can legally park on overnight
+        tonight — odd or even side, exception streets, and snow-emergency restrictions. It needs
+        JavaScript to run. For official rules, visit
+        <a href="https://city.milwaukee.gov/Parking/ParkingRegulations">city.milwaukee.gov/Parking</a>.
+      </p>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
