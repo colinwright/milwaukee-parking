@@ -27,15 +27,15 @@ const CREDITS = [
 const FAQ = [
   {
     q: 'Which side do I park on?',
-    a: 'Match the calendar date before midnight: odd-numbered dates → the side with odd house numbers; even dates → the even side. The side you choose in the evening stays legal through the 2–6 AM enforcement window.',
+    a: 'Park on the side whose house numbers match tonight’s date: odd date, odd side; even date, even side. What counts is tonight’s date, not tomorrow morning’s. So on July 10th you park on the even side, since 10 is even, and you’re fine there until 6 AM on the 11th.',
   },
   {
-    q: 'Do I need a permit?',
-    a: 'Yes — overnight parking (2–6 AM) requires a City of Milwaukee night parking permit or free temporary permission, except Sunday mornings and certain holidays. See the menu for city links.',
+    q: 'What counts as overnight, and do I need a permit?',
+    a: 'In Milwaukee, overnight parking means parking on the street between 2 and 6 AM. During those hours you need a city night parking permit or free temporary permission, except on Sunday mornings and several holidays. You’ll find links to both in the menu.',
   },
   {
     q: 'What changes during a snow emergency?',
-    a: 'Alternate-side rules run 10 PM–6 AM citywide, and parking is banned on through-highways and bus routes — vehicles there can be towed.',
+    a: 'The hours start earlier, running 10 PM to 6 AM citywide, and you can’t park on through-highways or bus routes at all. Cars left on them get towed.',
   },
 ];
 
@@ -108,9 +108,10 @@ export default function AboutDialog({ open, onClose }) {
         </div>
 
         <p className="mt-4 text-sm leading-relaxed text-white/85">
-          One question, answered clearly: where can you park overnight on Milwaukee city streets
-          tonight? Aim the crosshair at a street — or search an address — and get the side of the
-          street, the enforcement hours, and any winter or snow-emergency restrictions.
+          Milwaukee’s overnight parking rules are a hassle to keep straight: which side of the
+          street, which nights, plus the winter and snow-emergency exceptions. This app works it out
+          for you. Point the crosshair at a street or search an address, and it tells you where to
+          park tonight and when the rules apply.
         </p>
 
         <h3 className="mt-5 text-sm font-semibold">Common questions</h3>
@@ -141,8 +142,8 @@ export default function AboutDialog({ open, onClose }) {
         </ul>
 
         <p className="mt-5 border-t border-white/10 pt-3 text-[11px] leading-snug text-white/60">
-          An independent project, not affiliated with the City of Milwaukee. Posted signs always take
-          precedence over this app, and this is information, not legal advice.
+          This is an independent project, not affiliated with the City of Milwaukee. Always follow
+          posted signs; they override anything shown here, and none of this is legal advice.
         </p>
       </div>
     </div>

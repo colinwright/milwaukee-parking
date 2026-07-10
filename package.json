@@ -3,7 +3,11 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Definitive yes/no/odd/even answer for overnight street parking in Milwaukee.",
+  "description": "A clear yes/no/odd/even answer for overnight street parking in Milwaukee.",
+  "author": "Colin Wright (https://colin.io)",
+  "license": "MIT",
+  "homepage": "https://colinwright.github.io/milwaukee-parking/",
+  "repository": { "type": "git", "url": "https://github.com/colinwright/milwaukee-parking.git" },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
