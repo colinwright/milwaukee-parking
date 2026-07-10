@@ -1,0 +1,6 @@
+{
+  "emergencyDeclared": false,
+  "checkedAt": null,
+  "rawText": "Seed file. Overwritten by the snow-status GitHub Actions workflow during winter. A null checkedAt is treated as stale, so the app falls back to the manual-check banner in season.",
+  "note": "Off-season this file is intentionally left stale; the app skips snow logic outside Nov 15 - Mar 15."
+}

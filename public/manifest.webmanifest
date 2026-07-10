@@ -1,0 +1,13 @@
+{
+  "name": "Milwaukee Night Park",
+  "short_name": "Night Park",
+  "description": "Where can you park overnight in Milwaukee tonight? A definitive yes/no/odd/even answer.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
