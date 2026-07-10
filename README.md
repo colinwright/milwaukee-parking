@@ -1,4 +1,4 @@
-# Milwaukee Night Park 🅿️
+# Milwaukee Parking
 
 A mobile-first web app that gives a definitive **yes / no / odd / even** answer for
 where you can park overnight on Milwaukee city streets tonight. It factors in the

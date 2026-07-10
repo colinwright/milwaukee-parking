@@ -5,13 +5,13 @@ export default function StatusBanners({ snow, weather, inSeason }) {
   if (snow?.emergencyDeclared) {
     banners.push({
       key: 'emergency',
-      className: 'bg-red-700 text-white',
-      text: '❄️ SNOW EMERGENCY DECLARED — night parking rules are 10 PM–6 AM citywide. No parking on through-highways or bus routes.',
+      style: { backgroundColor: '#b3261e', color: '#fff' },
+      text: 'Snow emergency declared — night parking rules are 10 PM–6 AM citywide. No parking on through-highways or bus routes.',
     });
   } else if (inSeason && snow && !snow.available) {
     banners.push({
       key: 'stale',
-      className: 'bg-amber-500 text-black',
+      style: { backgroundColor: '#e08a1e', color: '#111318' },
       text: (
         <>
           Live snow status unavailable — check{' '}
@@ -27,8 +27,8 @@ export default function StatusBanners({ snow, weather, inSeason }) {
   if (weather?.active) {
     banners.push({
       key: 'weather',
-      className: 'bg-sky-700 text-white',
-      text: `⚠️ ${weather.event} active for Milwaukee — the city may declare a snow emergency.`,
+      style: { backgroundColor: '#1f4e8c', color: '#fff' },
+      text: `${weather.event} active for Milwaukee — the city may declare a snow emergency.`,
     });
   }
 
@@ -36,7 +36,7 @@ export default function StatusBanners({ snow, weather, inSeason }) {
   return (
     <div className="space-y-px">
       {banners.map((b) => (
-        <div key={b.key} className={`px-4 py-2 text-center text-xs font-medium ${b.className}`}>
+        <div key={b.key} style={b.style} className="px-4 py-2 text-center text-xs font-medium">
           {b.text}
         </div>
       ))}

@@ -6,6 +6,7 @@ import ResourcesMenu from './components/ResourcesMenu.jsx';
 import { resolveVerdict } from './lib/rules.js';
 import { loadStreets, nearestSegment } from './lib/streets.js';
 import { fetchSnowStatus, fetchWeatherAdvisory, inSnowSeason } from './lib/snow.js';
+import { MAP } from './lib/palette.js';
 
 const MAX_SNAP_M = 50;
 
@@ -107,33 +108,33 @@ export default function App() {
 
       {/* Top: title, status banners, search */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-[600] flex flex-col gap-2 p-3">
-        <div className="pointer-events-auto mx-auto w-full max-w-md rounded-xl bg-slate-900/85 p-2 text-white shadow-lg backdrop-blur">
-          <div className="flex items-center gap-2 px-1 pb-1">
-            <h1 className="min-w-0 flex-1 truncate text-sm font-bold">🅿️ Milwaukee Night Park</h1>
+        <div className="pointer-events-auto mx-auto w-full max-w-md rounded-xl border border-white/10 bg-[#111318] p-2.5 text-white">
+          <h1 className="px-0.5 text-base font-semibold tracking-tight">Milwaukee Parking</h1>
+          <div className="mt-2 flex gap-1.5">
             <button
               onClick={useMyLocation}
-              className="rounded-lg bg-blue-600 px-2.5 py-1 text-xs font-semibold active:bg-blue-700"
+              className="flex-1 rounded-md border border-white/15 px-3 py-2 text-sm font-medium text-white/90 transition-colors hover:bg-white/10 active:bg-white/15"
             >
               Use my location
             </button>
-            <ResourcesMenu />
+            <ResourcesMenu className="flex-1" />
           </div>
-          <form onSubmit={search} className="flex gap-1.5">
+          <form onSubmit={search} className="mt-1.5 flex gap-1.5">
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search an address…"
-              className="min-w-0 flex-1 rounded-lg bg-white/10 px-3 py-1.5 text-sm text-white placeholder-white/50 outline-none focus:bg-white/20"
+              className="min-w-0 flex-1 rounded-md border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder-white/40 outline-none focus:border-white/30"
             />
             <button
               type="submit"
               disabled={searching}
-              className="rounded-lg bg-white/15 px-3 py-1.5 text-sm font-semibold active:bg-white/25 disabled:opacity-50"
+              className="rounded-md border border-white/15 px-3.5 py-2 text-sm font-medium transition-colors hover:bg-white/10 active:bg-white/15 disabled:opacity-50"
             >
               {searching ? '…' : 'Go'}
             </button>
           </form>
-          {geoMsg && <p className="px-1 pt-1 text-xs text-amber-300">{geoMsg}</p>}
+          {geoMsg && <p className="px-0.5 pt-1.5 text-xs text-amber-200">{geoMsg}</p>}
         </div>
         <div className="pointer-events-auto mx-auto w-full max-w-md overflow-hidden rounded-xl shadow-lg">
           <StatusBanners snow={snow} weather={weather} inSeason={inSeason} />
@@ -143,17 +144,17 @@ export default function App() {
       {/* Bottom: verdict + legend */}
       <div className="absolute inset-x-0 bottom-0 z-[600] mx-auto w-full max-w-md">
         {dataError ? (
-          <div className="rounded-t-2xl bg-red-700 px-5 py-6 text-white">
+          <div className="border-t-4 border-[#b3261e] bg-[#111318] px-5 py-6 text-white">
             <p className="font-semibold">Couldn’t load street data.</p>
-            <p className="mt-1 text-sm text-white/90">{dataError}</p>
+            <p className="mt-1 text-sm text-white/80">{dataError}</p>
           </div>
         ) : (
           <VerdictBanner verdict={verdict} segment={segment} now={now} tooFar={tooFar} />
         )}
-        <div className="flex items-center justify-center gap-4 bg-slate-900/90 px-3 py-1.5 text-[11px] text-white/80">
-          <Legend color="bg-red-600" label="No overnight (Dec–Mar)" />
-          <Legend color="bg-green-600" label="Either side" />
-          <Legend color="bg-amber-500" label="Selected" />
+        <div className="flex items-center justify-center gap-4 border-t border-white/10 bg-[#111318] px-3 py-2 text-[11px] text-white/70">
+          <Legend color={MAP.no} label="No overnight (Dec–Mar)" />
+          <Legend color={MAP.either} label="Either side" />
+          <Legend color={MAP.selected} label="Selected" />
         </div>
       </div>
     </div>
@@ -162,8 +163,8 @@ export default function App() {
 
 function Legend({ color, label }) {
   return (
-    <span className="flex items-center gap-1">
-      <span className={`inline-block h-1.5 w-4 rounded ${color}`} />
+    <span className="flex items-center gap-1.5">
+      <span className="inline-block h-1 w-4 rounded-full" style={{ backgroundColor: color }} />
       {label}
     </span>
   );

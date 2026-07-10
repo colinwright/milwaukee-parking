@@ -1,18 +1,21 @@
 import { formatNightDate } from '../lib/rules.js';
+import { VERDICT_BG } from '../lib/palette.js';
 
+// rules.js returns color 'no' | 'either' | 'odd' | 'even'. Odd and even both map
+// to the single alternate-side color; the large ODD/EVEN word carries the detail.
 const BG = {
-  no: 'bg-red-600',
-  either: 'bg-green-600',
-  odd: 'bg-blue-600',
-  even: 'bg-cyan-600',
+  no: VERDICT_BG.no,
+  either: VERDICT_BG.either,
+  odd: VERDICT_BG.alt,
+  even: VERDICT_BG.alt,
 };
 
 export default function VerdictBanner({ verdict, segment, now, tooFar }) {
   if (tooFar) {
     return (
-      <div className="rounded-t-2xl bg-slate-700 px-5 py-6 text-white shadow-2xl">
+      <div className="border-t border-white/10 bg-[#111318] px-5 py-6 text-white">
         <p className="text-lg font-semibold">Move the crosshair onto a Milwaukee street</p>
-        <p className="mt-1 text-sm text-slate-200">
+        <p className="mt-1 text-sm text-white/60">
           No street found within 50&nbsp;m of the center point.
         </p>
       </div>
@@ -20,27 +23,27 @@ export default function VerdictBanner({ verdict, segment, now, tooFar }) {
   }
   if (!verdict) {
     return (
-      <div className="rounded-t-2xl bg-slate-700 px-5 py-6 text-white shadow-2xl">
+      <div className="border-t border-white/10 bg-[#111318] px-5 py-6 text-white">
         <p className="text-lg font-semibold">Loading map data…</p>
       </div>
     );
   }
 
   return (
-    <div className={`rounded-t-2xl px-5 pb-5 pt-4 text-white shadow-2xl ${BG[verdict.color]}`}>
+    <div className="px-5 pb-5 pt-4 text-white" style={{ backgroundColor: BG[verdict.color] }}>
       <div className="flex items-baseline justify-between gap-3">
-        <span className="text-xs font-medium uppercase tracking-wide text-white/80">
+        <span className="truncate text-xs font-medium uppercase tracking-wide text-white/75">
           {segment?.label || 'This location'}
         </span>
-        <span className="text-xs text-white/80">Tonight · {formatNightDate(now)}</span>
+        <span className="shrink-0 text-xs text-white/75">Tonight · {formatNightDate(now)}</span>
       </div>
 
-      <p className="mt-1 text-2xl font-extrabold leading-tight">{verdict.headline}</p>
-      <p className="mt-0.5 text-sm font-medium text-white/90">Enforced {verdict.hours}</p>
+      <p className="mt-1.5 text-[26px] font-bold leading-tight tracking-tight">{verdict.headline}</p>
+      <p className="mt-1 text-sm text-white/85">Enforced {verdict.hours}</p>
 
-      <ul className="mt-3 space-y-1 border-t border-white/25 pt-3 text-xs text-white/90">
+      <ul className="mt-3.5 space-y-1.5 border-t border-white/20 pt-3 text-xs leading-relaxed text-white/85">
         {verdict.notes.map((n, i) => (
-          <li key={i}>• {n}</li>
+          <li key={i}>{n}</li>
         ))}
       </ul>
     </div>

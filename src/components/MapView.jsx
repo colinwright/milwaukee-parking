@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react';
 import L from 'leaflet';
+import { MAP } from '../lib/palette.js';
 
 const MKE_CENTER = [43.0389, -87.9065];
 
-// Colors mirror tailwind.config verdict palette.
-const COLOR_EX = '#16a34a'; // green — exception (either side)
-const COLOR_NNP = '#dc2626'; // red — no overnight parking Dec1–Mar1
-const COLOR_SEL = '#f59e0b'; // amber — highlighted selected segment
+const COLOR_EX = MAP.either; // green — exception (either side)
+const COLOR_NNP = MAP.no; // red — no overnight parking Dec1–Mar1
+const COLOR_SEL = MAP.selected; // amber — highlighted selected segment
 
 export default function MapView({ data, target, selectedLabel, onCenterChange }) {
   const containerRef = useRef(null);

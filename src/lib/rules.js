@@ -1,4 +1,4 @@
-// Milwaukee Night Park — parking rule engine.
+// Milwaukee Parking — parking rule engine.
 //
 // This module is the entire value of the app. Every rule here is transcribed
 // from the City of Milwaukee's official parking-regulations page (see
