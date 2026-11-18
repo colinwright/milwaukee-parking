@@ -10,7 +10,7 @@
 // Run in CI:  npx playwright install --with-deps chromium && node scraper/snow.mjs
 
 import { writeFile } from 'node:fs/promises';
-import { classifySnowText } from './classify.mjs';
+import { classifySnowText, isSnowStatusPage } from './classify.mjs';
 
 const STATUS_URL = 'https://city.milwaukee.gov/dpw/operations/snowoperationstatus';
 const OUT = process.env.SNOW_OUT || 'snow-status.json';
@@ -28,6 +28,8 @@ async function scrape() {
     await page.waitForTimeout(2500);
     const bodyText = await page.evaluate(() => document.body.innerText || '');
     if (!bodyText || bodyText.length < 40) throw new Error('empty page text');
+    if (!isSnowStatusPage(bodyText))
+      throw new Error('got a bot check or an unexpected page, not the status page');
     return bodyText;
   } finally {
     await browser.close();

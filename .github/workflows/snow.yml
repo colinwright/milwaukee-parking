@@ -38,12 +38,14 @@ jobs:
       - if: steps.gate.outputs.in_season == '1'
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
 
       - name: Scrape
         if: steps.gate.outputs.in_season == '1'
         run: |
-          npm i -D playwright@^1.47.0
+          # --no-save keeps package.json and the lockfile untouched, so the
+          # publish step can switch branches.
+          npm i --no-save playwright@^1.47.0
           npx playwright install --with-deps chromium
           SNOW_OUT="$RUNNER_TEMP/snow-status.json" node scraper/snow.mjs
           cat "$RUNNER_TEMP/snow-status.json"
@@ -54,6 +56,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           # Prepare an orphan-ish data branch containing only snow-status.json.
+          # Drop any workspace changes from the scrape step before switching.
+          git reset --hard HEAD
           git fetch origin data --depth=1 || true
           if git show-ref --verify --quiet refs/remotes/origin/data; then
             git checkout -B data origin/data
