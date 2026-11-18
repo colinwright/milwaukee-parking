@@ -1,5 +1,12 @@
 # Milwaukee Parking
 
+> **Retired, November 2026.** This app is no longer updated. Its site now
+> redirects to [mkestuff.com/parking](https://mkestuff.com/parking/), which
+> covers overnight, winter, and snow-emergency parking with maintained City
+> data. The code below is kept for reference; the scheduled data refresh and
+> snow-status jobs were removed, and `retired/` holds the redirect page and a
+> service worker that clears the old app from returning visitors' browsers.
+
 A mobile-first web app that gives a definitive **yes / no / odd / even** answer for
 where you can park overnight on Milwaukee city streets tonight. It factors in the
 year-round alternate-side rule, exception streets, through-highway / bus-route

@@ -15,27 +15,15 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # The app is retired in favor of mkestuff.com/parking. The site now
+  # publishes only the redirect page in retired/, which needs no build.
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-      - run: npm ci
-      - run: npm test
-      - name: Build
-        env:
-          # Repo project sites serve from /<repo-name>/. Derived automatically.
-          BASE_PATH: /${{ github.event.repository.name }}/
-          # Live snow status is published to the `data` branch by snow.yml and
-          # read cross-origin from raw.githubusercontent (CORS-open).
-          VITE_SNOW_URL: https://raw.githubusercontent.com/${{ github.repository }}/data/snow-status.json
-        run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: retired
 
   deploy:
     needs: build
